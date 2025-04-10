@@ -6,11 +6,3 @@ export default {
   },
   plugins: [],
 };
-/* index.css */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;    /* Firefox */
-}
