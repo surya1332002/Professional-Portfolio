@@ -183,7 +183,7 @@ const scrollProjects = (direction: 'left' | 'right') => {
     { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
-    { id: 'certifications', label: 'Certifications' },
+    { id: 'certifications', label: 'Publications' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -329,38 +329,65 @@ const scrollProjects = (direction: 'left' | 'right') => {
         </div>
       </section>
 
-{/* Skills Section */}
-<section id="skills" className="py-20 bg-gray-50 relative">
+      <section id="skills" className="py-20 bg-gray-50 relative">
   <h2 className="text-3xl font-bold text-center mb-16">Skills</h2>
 
   <div className="relative flex items-center justify-center">
-    {/* Left Arrow */}
+    {/* Arrows for desktop only */}
     <div
       onClick={() => scrollSkills("left")}
-      className="absolute left-20 z-20"
+      className="absolute left-20 z-20 hidden md:block"
     >
       <div className="p-3 bg-white shadow-lg rounded-full cursor-pointer hover:scale-110 transition">
         <ChevronLeft size={50} className="text-gray-800" />
       </div>
     </div>
 
-    {/* Right Arrow */}
     <div
       onClick={() => scrollSkills("right")}
-      className="absolute right-20 z-20"
+      className="absolute right-20 z-20 hidden md:block"
     >
       <div className="p-3 bg-white shadow-lg rounded-full cursor-pointer hover:scale-110 transition">
         <ChevronRight size={50} className="text-gray-800" />
       </div>
     </div>
 
-    {/* Bounded Skills Viewport */}
-    <div className="overflow-hidden w-[82%]">
+    {/* Mobile Carousel - 4 at a time (2x2) */}
+    <div className="md:hidden w-full overflow-x-auto px-4 scrollbar-hide">
+      <div className="flex gap-4 snap-x snap-mandatory scroll-smooth">
+        {
+          Array.from({ length: Math.ceil(portfolioData.skills.length / 4) }, (_, i) => (
+            <div
+              key={i}
+              className="min-w-full snap-start grid grid-cols-2 gap-4"
+            >
+              {portfolioData.skills.slice(i * 4, i * 4 + 4).map((skill, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col items-center bg-white rounded-lg shadow p-3"
+                >
+                  <div className="w-16 h-16 flex items-center justify-center">
+                    <img
+                      src={skill.image}
+                      alt={skill.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="text-xs text-center mt-2">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Desktop Scrollable Carousel */}
+    <div className="hidden md:block w-[82%] overflow-hidden">
       <div
         ref={scrollContainerRef}
         id="skills-scroll"
-        className="flex gap-8 px-8 overflow-x-auto scrollbar-hide scroll-smooth"
-        style={{ scrollBehavior: "smooth" }}
+        className="flex gap-8 px-8 overflow-x-auto scroll-smooth scrollbar-hide"
       >
         {portfolioData.skills.map((skill, index) => (
           <div
@@ -386,64 +413,99 @@ const scrollProjects = (direction: 'left' | 'right') => {
 
 
 
-
 <section id="projects" className="py-20 bg-white relative">
   <h2 className="text-3xl font-bold text-center mb-16">Projects</h2>
 
   <div className="relative flex items-center justify-center">
-    {/* Left Arrow */}
+    {/* Desktop Arrows */}
     <div
       onClick={() => scrollProjects('left')}
-      className="absolute left-6 z-20"
+      className="absolute left-6 z-20 hidden md:block"
     >
       <div className="p-3 bg-white shadow-lg rounded-full cursor-pointer hover:scale-110 transition">
         <ChevronLeft size={40} className="text-gray-800" />
       </div>
     </div>
 
-    {/* Right Arrow */}
     <div
       onClick={() => scrollProjects('right')}
-      className="absolute right-6 z-20"
+      className="absolute right-6 z-20 hidden md:block"
     >
       <div className="p-3 bg-white shadow-lg rounded-full cursor-pointer hover:scale-110 transition">
         <ChevronRight size={40} className="text-gray-800" />
       </div>
     </div>
 
-    {/* Viewport */}
-    <div className="overflow-hidden w-[85%]">
+    {/* Mobile: 1x2 Cards per swipe group */}
+    <div className="md:hidden w-full overflow-x-auto px-4 scrollbar-hide">
+      <div className="flex gap-6 snap-x snap-mandatory scroll-smooth">
+        {
+          Array.from({ length: Math.ceil(portfolioData.projects.length / 2) }, (_, i) => (
+            <div
+              key={i}
+              className="min-w-full snap-start grid grid-cols-1 gap-6"
+            >
+              {portfolioData.projects.slice(i * 2, i * 2 + 2).map((project, idx) => (
+                <div
+                  key={idx}
+                  className="bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-shadow p-4 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-full h-40 mb-4 overflow-hidden rounded-lg">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">{project.name}</h3>
+                    <p className="text-gray-600 text-sm">{project.description}</p>
+                  </div>
+                  <div className="mt-4 text-blue-600 text-sm">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
+                      View on GitHub <Github size={16} />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Desktop Scrollable Layout */}
+    <div className="hidden md:block w-[85%] overflow-hidden">
       <div
         ref={projectsScrollRef}
         className="flex gap-8 overflow-x-auto scroll-smooth scrollbar-hide"
         style={{ scrollBehavior: 'smooth' }}
       >
         {portfolioData.projects.map((project, index) => (
-  <div
-    key={index}
-    className="min-w-[300px] max-w-[300px] flex-shrink-0 bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-shadow p-4 flex flex-col justify-between h-[450px]"
-  >
-    <div>
-      <div className="w-full h-40 mb-4 overflow-hidden rounded-lg">
-        <img
-          src={project.image}
-          alt={project.name}
-          className="w-full h-full object-fit"
-        />
-      </div>
-      <h3 className="text-md font-semibold mb-2">{project.name}</h3>
-      <p className="text-gray-600 text-sm overflow-hidden text-ellipsis line-clamp-5">
-        {project.description}
-      </p>
-    </div>
-    <div className="mt-4 text-blue-600 text-sm">
-      <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
-        View on GitHub <Github size={16} />
-      </a>
-    </div>
-  </div>
-))}
-
+          <div
+            key={index}
+            className="min-w-[300px] max-w-[300px] flex-shrink-0 bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-shadow p-4 flex flex-col justify-between h-[450px]"
+          >
+            <div>
+              <div className="w-full h-40 mb-4 overflow-hidden rounded-lg">
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-md font-semibold mb-2">{project.name}</h3>
+              <p className="text-gray-600 text-sm overflow-hidden text-ellipsis line-clamp-5">
+                {project.description}
+              </p>
+            </div>
+            <div className="mt-4 text-blue-600 text-sm">
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
+                View on GitHub <Github size={16} />
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </div>
