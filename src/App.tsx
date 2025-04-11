@@ -415,7 +415,7 @@ const scrollProjects = (direction: 'left' | 'right') => {
     <div className="overflow-hidden w-[85%]">
       <div
         ref={projectsScrollRef}
-        className="flex gap-8 overflow-x-auto scroll-smooth"
+        className="flex gap-8 overflow-x-auto scroll-smooth scrollbar-hide"
         style={{ scrollBehavior: 'smooth' }}
       >
         {portfolioData.projects.map((project, index) => (
