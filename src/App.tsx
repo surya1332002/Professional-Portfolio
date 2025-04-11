@@ -535,57 +535,69 @@ const scrollProjects = (direction: 'left' | 'right') => {
 
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16">Contact</h2>
-          <div className="max-w-2xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <a
-                href={portfolioData.resumeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <FileText size={24} className="text-gray-700" />
-                <span className="text-gray-800">Download Resume</span>
-              </a>
-              <a
-                href={portfolioData.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <Github size={24} className="text-gray-700" />
-                <span className="text-gray-800">GitHub Profile</span>
-              </a>
-              <a
-                href={portfolioData.linkedinLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <Linkedin size={24} className="text-gray-700" />
-                <span className="text-gray-800">LinkedIn Profile</span>
-              </a>
-              <a
-                href={`mailto:${portfolioData.email}`}
-                className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <Mail size={24} className="text-gray-700" />
-                <span className="text-gray-800">{portfolioData.email}</span>
-              </a>
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                <Phone size={24} className="text-gray-700" />
-                <span className="text-gray-800">{portfolioData.phone}</span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                <MapPin size={24} className="text-gray-700" />
-                <span className="text-gray-800">{portfolioData.location}</span>
-              </div>
-            </div>
-          </div>
+<section id="contact" className="py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold text-center mb-16">Contact</h2>
+    <div className="max-w-2xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Download Resume */}
+        <a
+          href={portfolioData.resumeLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <FileText size={24} className="text-gray-700" />
+          <span className="text-gray-800">Download Resume</span>
+        </a>
+
+        {/* GitHub Profile */}
+        <a
+          href={portfolioData.githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <Github size={24} className="text-gray-700" />
+          <span className="text-gray-800">GitHub Profile</span>
+        </a>
+
+        {/* LinkedIn Profile */}
+        <a
+          href={portfolioData.linkedinLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <Linkedin size={24} className="text-gray-700" />
+          <span className="text-gray-800">LinkedIn Profile</span>
+        </a>
+
+        {/* Email */}
+        <a
+          href={`mailto:${portfolioData.email}`}
+          className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <Mail size={24} className="text-gray-700" />
+          <span className="text-gray-800">{portfolioData.email}</span>
+        </a>
+
+        {/* Phone */}
+        <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+          <Phone size={24} className="text-gray-700" />
+          <span className="text-gray-800">{portfolioData.phone}</span>
         </div>
-      </section>
+
+        {/* Location */}
+        <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+          <MapPin size={24} className="text-gray-700" />
+          <span className="text-gray-800">{portfolioData.location}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     </div>
   );
 }
