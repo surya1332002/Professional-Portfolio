@@ -63,7 +63,7 @@ const scrollProjects = (direction: 'left' | 'right') => {
     location: "Houston, TX",
     phone: "+1 (346) 628-8609",
     email: "surya.unf257@gmail.com",
-    resumeLink: "/surya_resume.pdf", // Provide a public resume link here
+    resumeLink: "/Professional-Portfolio/surya_resume.pdf", // Provide a public resume link here
     githubLink: "https://github.com/surya1332002",
     linkedinLink: "https://www.linkedin.com/in/suryavardhanreddypuchalapalli/",
     education: [
